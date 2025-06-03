@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estoque - Oficina Precision</title>
+</head>
+<body>
+    <h1>Dashboard do Estoque</h1>
+    <a href="{% url 'novo_item' %}">Cadastrar Novo Item</a>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Localização</th>
+            <th>Quantidade</th>
+            <th>Estoque Mínimo</th>
+            <th>Ações</th>
+        </tr>
+        {% for item in itens %}
+        <tr {% if item.quantidade < item.estoque_minimo %} style="background-color: #f8d7da;" {% endif %}>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.codigo }}</td>
+            <td>{{ item.localizacao }}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.estoque_minimo }}</td>
+            <td>
+                <a href="{% url 'entrada' item.id %}">Entrada</a> |
+                <a href="{% url 'saida' item.id %}">Saída</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

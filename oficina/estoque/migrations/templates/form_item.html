@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ titulo }}</title>
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+
+    {% if form %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <label>Quantidade:</label>
+            <input type="number" name="valor" required>
+            <button type="submit">Confirmar</button>
+        </form>
+    {% endif %}
+
+    <a href="{% url 'dashboard' %}">Voltar</a>
+</body>
+</html>
